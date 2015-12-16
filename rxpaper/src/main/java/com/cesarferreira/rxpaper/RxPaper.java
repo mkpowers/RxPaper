@@ -2,9 +2,10 @@ package com.cesarferreira.rxpaper;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.cesarferreira.rxpaper.exceptions.UnableToPerformOperationException;
-import io.paperdb.Paper;
+
 import java.util.List;
+
+import io.paperdb.Paper;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -63,7 +64,7 @@ public class RxPaper {
 
                         subscriber.onNext(true);
                     } catch (Exception e) {
-                        subscriber.onError(new UnableToPerformOperationException("Can't write"));
+                        subscriber.onError(e);
                     }
                     subscriber.onCompleted();
 
@@ -102,7 +103,7 @@ public class RxPaper {
                     }
 
                     if (value == null) {
-                        subscriber.onError(new UnableToPerformOperationException(key + " is empty"));
+                        subscriber.onError(e);
                     } else {
                         subscriber.onNext(value);
                     }
@@ -140,7 +141,7 @@ public class RxPaper {
                     }
 
                     if (value == null) {
-                        subscriber.onError(new UnableToPerformOperationException(key + " is empty"));
+                        subscriber.onError(e);
                     } else {
                         subscriber.onNext(value);
                     }
@@ -176,7 +177,7 @@ public class RxPaper {
                         }
                         subscriber.onNext(true);
                     } catch (Exception e) {
-                        subscriber.onError(new UnableToPerformOperationException("Can't delete"));
+                        subscriber.onError(e);
                     }
 
                     subscriber.onCompleted();
@@ -209,7 +210,7 @@ public class RxPaper {
                         }
                         subscriber.onNext(exists);
                     } catch (Exception e) {
-                        subscriber.onError(new UnableToPerformOperationException("Can't check if key exists"));
+                        subscriber.onError(e);
                     }
 
                     subscriber.onCompleted();
@@ -235,7 +236,7 @@ public class RxPaper {
                         }
                         subscriber.onNext(keys);
                     } catch (Exception e) {
-                        subscriber.onError(new UnableToPerformOperationException("Can't collect all keys"));
+                        subscriber.onError(e);
                     }
 
                     subscriber.onCompleted();
@@ -257,7 +258,7 @@ public class RxPaper {
                         }
                         subscriber.onNext(true);
                     } catch (Exception e) {
-                        subscriber.onError(new UnableToPerformOperationException("Can't destroy"));
+                        subscriber.onError(e);
                     }
                     subscriber.onCompleted();
 
